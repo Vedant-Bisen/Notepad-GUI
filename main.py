@@ -9,6 +9,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.setGeometry(1200, 200, 480, 640)
         self.setWindowTitle("Notepad")
+        # self.setStyleSheet("background-color: #2d2d2d; color: #ffffff")
         self.grabShortcut()
         self.initUI()
 
@@ -47,6 +48,7 @@ class MainWindow(QMainWindow):
 
         self.editMenu = self.menuBar.addMenu("&Edit")
         self.editMenu.addAction("&Rename tab", self.renameTab)
+        self.editMenu.addAction("&Fonts", self.fonts)
 
     def addTab(self):
         self.tabs.addTab(
@@ -99,6 +101,11 @@ class MainWindow(QMainWindow):
 
     def close(self):
         sys.exit()
+
+    def fonts(self):
+        font, ok = QtWidgets.QFontDialog.getFont()
+        if ok:
+            self.tabs.currentWidget().setFont(font)
 
 
 if __name__ == "__main__":
